@@ -4,6 +4,7 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { Columns } from "../../types";
 import { Board } from "../../data/board";
 import { AddOutline } from "react-ionicons";
+import Task from "../../components/Task";
 
 const Boards = () => {
   const [columns, setColumns] = useState<Columns>(Board);
@@ -28,7 +29,11 @@ const Boards = () => {
                         key={task.id.toString()}
                         draggableId={task.id.toString()}
                       >
-                        {(provided: any) => <>{task.title}</>}
+                        {(provided: any) => (
+                          <>
+                            <Task provided={provided} task={task} />
+                          </>
+                        )}
                       </Draggable>;
                     })}
                     {provided.placeholder}
