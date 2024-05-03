@@ -5,6 +5,7 @@ import { Columns } from "../../types";
 import { Board } from "../../data/board";
 import { AddOutline } from "react-ionicons";
 import Task from "../../components/Task";
+import AddModal from "../../components/Modals/AddModal";
 
 const Boards = () => {
   const [columns, setColumns] = useState<Columns>(Board);
@@ -27,7 +28,9 @@ const Boards = () => {
 
   return (
     <>
-      <DragDropContext onDragEnd={(result: any) => console.log(result)}>
+      <DragDropContext
+        onDragEnd={(result: any) => ondragend(result, columns, setColumns)}
+      >
         <div className="w-full flex items-start justify-between px-5 pb-8 md:gap-0 gap-10">
           {Object.entries(columns).map(([columnId, column]: any) => (
             <div className="w-full flex flex-col gap-0" key={columnId}>
@@ -57,7 +60,10 @@ const Boards = () => {
                   </div>
                 )}
               </Droppable>
-              <div className="flex cursor-pointer items-center justify-center gap-1 py-[10px] md:w-[90%] w-full opacity-90 bg-white rounded-lg shadow-sm text-[#555] font-medium text-[15px]">
+              <div
+                onClick={() => openModal(columnId)}
+                className="flex cursor-pointer items-center justify-center gap-1 py-[10px] md:w-[90%] w-full opacity-90 bg-white rounded-lg shadow-sm text-[#555] font-medium text-[15px]"
+              >
                 <AddOutline color={"#555"} />
                 Add Task
               </div>
@@ -65,6 +71,12 @@ const Boards = () => {
           ))}
         </div>
       </DragDropContext>
+      <AddModal
+        isOpen={modalOpen}
+        onClose={closeModal}
+        setOpen={setModalOpen}
+        handleAddTask={handleAddTask}
+      />
     </>
   );
 };
