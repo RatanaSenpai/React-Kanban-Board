@@ -38,6 +38,6 @@ body::before {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #f59e0b !important;
+  background: #c60bf5 !important;
   border-radius: 5px;
 }
