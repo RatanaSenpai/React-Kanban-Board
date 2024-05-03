@@ -13,7 +13,7 @@ const Navbar = () => {
       <div className="flex items-center gap-3 cursor-pointer">
         <PersonCircleOutline color="#8E4EC6" width={"28px"} height={"28px"} />
         <span className="text-violet-400 font-semibold md:text-lg text-sm whitespace-nowrap">
-          Board Name
+          Kanban Board
         </span>
         <ChevronDown color="#8E4EC6" width={"16px"} height={"16px"} />
       </div>
