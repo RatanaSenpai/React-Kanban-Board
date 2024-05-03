@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useState } from "react";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { Columns } from "../../types";
 import { Board } from "../../data/board";
+import { Columns } from "../../types";
+import { onDragEnd } from "../../helpers/onDragEnd";
 import { AddOutline } from "react-ionicons";
-import Task from "../../components/Task";
 import AddModal from "../../components/Modals/AddModal";
+import Task from "../../components/Task";
 
-const Boards = () => {
+const Home = () => {
   const [columns, setColumns] = useState<Columns>(Board);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedColumn, setSelectedColumn] = useState("");
@@ -29,7 +30,7 @@ const Boards = () => {
   return (
     <>
       <DragDropContext
-        onDragEnd={(result: any) => ondragend(result, columns, setColumns)}
+        onDragEnd={(result: any) => onDragEnd(result, columns, setColumns)}
       >
         <div className="w-full flex items-start justify-between px-5 pb-8 md:gap-0 gap-10">
           {Object.entries(columns).map(([columnId, column]: any) => (
@@ -44,18 +45,19 @@ const Boards = () => {
                     <div className="flex items-center justify-center py-[10px] w-full bg-white rounded-lg shadow-sm text-[#555] font-medium text-[15px]">
                       {column.name}
                     </div>
-                    {column.items.map((task: any, index: any) => {
+                    {column.items.map((task: any, index: any) => (
                       <Draggable
                         key={task.id.toString()}
                         draggableId={task.id.toString()}
+                        index={index}
                       >
                         {(provided: any) => (
                           <>
                             <Task provided={provided} task={task} />
                           </>
                         )}
-                      </Draggable>;
-                    })}
+                      </Draggable>
+                    ))}
                     {provided.placeholder}
                   </div>
                 )}
@@ -71,6 +73,7 @@ const Boards = () => {
           ))}
         </div>
       </DragDropContext>
+
       <AddModal
         isOpen={modalOpen}
         onClose={closeModal}
@@ -81,4 +84,4 @@ const Boards = () => {
   );
 };
 
-export default Boards;
+export default Home;
