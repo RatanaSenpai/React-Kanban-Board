@@ -131,7 +131,7 @@ const AddModal = ({
           className="w-full h-12 px-3 outline-none rounded-md bg-slate-100 border border-slate-300 text-sm"
         />
         <button
-          className="w-full rounded-md h-9 bg-violet-500 text-amber-50 font-medium"
+          className="w-full rounded-md h-9 bg-violet-500 text-amber-50 font-medium hover:bg-violet-400"
           onClick={handleAddTag}
         >
           Add Tag
@@ -165,7 +165,7 @@ const AddModal = ({
           />
         </div>
         <button
-          className="w-full mt-3 rounded-md h-9 bg-violet-400 text-blue-50 font-medium"
+          className="w-full mt-3 rounded-md h-9 bg-violet-500 text-blue-50 font-medium hover:bg-violet-400"
           onClick={handleSubmit}
         >
           Submit Task
